@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build docker-compose
       run: docker-compose build
+    - name: bundle install
+      run: docker-compose run app bundle install
     - name: execute migration
       run: docker-compose run app bundle exec rails db:migrate
     - name: run rspec
