@@ -6,18 +6,13 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: build docker-compose
       run: docker-compose build
-  migrate-db:
-    runs-on: ubuntu-latest
-    steps:
     - name: execute migration
       run: docker-compose run app rails db:migrate
-  test:
-    runs-on: ubuntu-latest
-    steps:
     - name: run rspec
       run: docker-compose run app rspec
