@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build docker-compose
-      with:
-        bundler_version: ${{ matrix.versions }}
-      run: docker-compose build --build-arg BUNDLER_VERSION=${INPUT_BUNDLER_VERSION}
+      env:
+        BUNDLER_VERSION: ${{ matrix.versions }}
+      run: docker-compose build --build-arg BUNDLER_VERSION=${BUNDLER_VERSION}
     - name: bundle install
       run: docker-compose run app bundle install
     - name: execute migration
