@@ -11,6 +11,7 @@ jobs:
     strategy:
       matrix:
         versions: [2.1.4, 2.1.3, 2.1.2, 2.1.1, 2.1.0, 2.0.2, 2.0.1, 2.0.0]
+      fail-fast: false
     steps:
     - uses: actions/checkout@v2
     - name: build docker-compose
