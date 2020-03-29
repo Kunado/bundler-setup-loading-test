@@ -13,6 +13,6 @@ jobs:
     - name: build docker-compose
       run: docker-compose build
     - name: execute migration
-      run: docker-compose run app rails db:migrate
+      run: docker-compose run app bundle exec rails db:migrate
     - name: run rspec
-      run: docker-compose run app rspec
+      run: docker-compose run app bundle exec rspec
