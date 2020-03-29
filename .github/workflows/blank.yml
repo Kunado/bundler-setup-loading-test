@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build docker-compose
+      run: docker-compose build
+  migrate-db:
+    runs-on: ubuntu-latest
+    steps:
+    - name: execute migration
+      run: docker-compose run app rails db:migrate
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: run rspec
+      run: docker-compose run app rspec
